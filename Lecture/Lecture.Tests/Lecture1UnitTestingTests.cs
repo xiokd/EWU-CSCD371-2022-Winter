@@ -1,12 +1,12 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
-namespace Lecture1.Tests
+namespace Lecture.Tests
 {
     [TestClass]
     public class Lecture1UnitTestingTests
     {
-        Person Person = new();
+        Person Person = new("Inigo Montoya");
         string UserName = "";
         string Password = "";
 
