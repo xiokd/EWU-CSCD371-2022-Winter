@@ -1,9 +1,10 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Lecture1.Tests
 {
     [TestClass]
-    public class PersonTests
+    public class Lecture1UnitTestingTests
     {
         Person Person = new();
         string UserName = "";
@@ -41,5 +42,6 @@ namespace Lecture1.Tests
             bool result = Person.Login(UserName, Password);
             Assert.IsFalse(result);
         }
+
     }
 }
