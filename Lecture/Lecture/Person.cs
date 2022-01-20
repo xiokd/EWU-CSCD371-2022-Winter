@@ -4,6 +4,7 @@
 public class Person
 {
 
+
     public Person(string firstName, string lastName) : 
         this($"{firstName} {lastName}") {}
 
@@ -18,13 +19,21 @@ public class Person
         Name = name;
     }
 
+    public int Age { get; set; }
+
+
+    public string? MiddelName { get; set; }
+
+
     private string? _Name;
-    public string Name
+    public System.String Name
     {
         get => _Name!;
 
         set { 
             if(value is null) { throw new ArgumentNullException(nameof(value)); }
+            if(string.IsNullOrWhiteSpace(value)) { throw new ArgumentException(
+                $"{nameof(Name)} cannot be an empty or whitespace.", nameof(value)); }
             _Name = value; 
         }
     }
