@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Lecture
+namespace Lecture;
+public interface ISavable
 {
-    public interface ISavable
-    {
-        string ToText();
-    }
+    string? ToText();
 }
+

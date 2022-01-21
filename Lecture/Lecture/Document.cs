@@ -3,9 +3,10 @@
 namespace Lecture;
 public class Document : Thing, ISavable, ISerializable
 {
-    public string Content { get; private set; }
+    public string? Content { get; private set; }
 
-    public Document(string name) => Name = name;
+    public Document(string name)
+        :base(name)=> Name = name;
 
     string ISavable.ToText()
     {
@@ -14,7 +15,7 @@ public class Document : Thing, ISavable, ISerializable
         return $"{nameof(Name)}: {Name} {text}";
     }
 
-    public string ToText()
+    public override string? ToText()
     {
         return Content;
     }

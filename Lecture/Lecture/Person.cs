@@ -7,7 +7,7 @@ public class Person : Thing, ISavable
     public Person(string firstName, string lastName) : 
         this($"{firstName} {lastName}") {}
 
-    public Person(string name) 
+    public Person(string name) : base(name)
     {
         Initialize(name);
     }
@@ -18,7 +18,7 @@ public class Person : Thing, ISavable
         Name = name;
     }
 
-    public string ToText() => $"{nameof(Name)}: {Name}; {nameof(DateOfBirth)}: {DateOfBirth}";
+    public override string? ToText() => $"{nameof(Name)}: {Name}; {nameof(DateOfBirth)}: {DateOfBirth}";
 
     //public int Age
     //{
@@ -47,12 +47,12 @@ public class Person : Thing, ISavable
         }
     }
 
-    (string, string)[] Passwords = new[] { 
+    readonly (string, string)[] Credentials = new[] { 
         ("Inigo Montoya", "YouKilledMyF@ther!")
     }; 
 
     public bool Login(string userName, string password)
     {
-        return password == "YouKilledMyF@ther!";
+        return (userName,password)==Credentials[0];
     }
 }
