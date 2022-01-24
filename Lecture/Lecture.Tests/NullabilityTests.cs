@@ -1,11 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lecture.Tests
+﻿namespace Lecture.Tests
 {
     [TestClass]
     public class NullabilityTests
@@ -31,7 +24,7 @@ namespace Lecture.Tests
             Assert.IsNull(number);
         }
 
-        private string SomeMethod() =>
+        private static string SomeMethod() =>
             "Princess Buttercup";
 
     }

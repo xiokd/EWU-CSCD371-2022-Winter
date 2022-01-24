@@ -48,7 +48,7 @@ public class Person : Thing, ISavable
     }
 
     readonly (string, string)[] Credentials = new[] { 
-        ("Inigo Montoya", "YouKilledMyF@ther!")
+        ("Inigo.Montoya", "YouKilledMyF@ther!")
     }; 
 
     public bool Login(string userName, string password)

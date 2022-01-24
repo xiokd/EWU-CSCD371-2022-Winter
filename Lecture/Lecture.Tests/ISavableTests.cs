@@ -1,10 +1,4 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace Lecture.Tests;
 
 [TestClass]
@@ -29,7 +23,18 @@ public class ISavableTests
     {
         Document thing = new ("Thing 1");
         Assert.AreEqual<string?>("Name: Thing 1", ((ISavable)thing).ToText());
-       
     }
+
+
+    #pragma warning disable CA1806 // Do not ignore method results
+    [TestMethod]
+    public void APIDesignExampleWithToUpper()
+    {
+        string text = "Inigo Montoya";
+        text.ToUpper();
+        Assert.AreEqual<string>("Inigo Montoya", text);
+        Assert.AreEqual<string>("INIGO MONTOYA", text.ToUpper());
+    }
+    #pragma warning restore CA1806 // Do not ignore method results
 }
 
