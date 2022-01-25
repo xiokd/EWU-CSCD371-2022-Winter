@@ -25,7 +25,8 @@ public class ISavableTests
     }
 
 
-    #pragma warning disable CA1806 // Do not ignore method results
+
+#pragma warning disable CA1806 // This is intentionally demonstrating a less than great API.
     [TestMethod]
     public void APIDesignExampleWithToUpper()
     {
@@ -34,6 +35,6 @@ public class ISavableTests
         Assert.AreEqual<string>("Inigo Montoya", text);
         Assert.AreEqual<string>("INIGO MONTOYA", text.ToUpper());
     }
-    #pragma warning restore CA1806 // Do not ignore method results
+#pragma warning restore CA1806 // Do not ignore method results
 }
 
