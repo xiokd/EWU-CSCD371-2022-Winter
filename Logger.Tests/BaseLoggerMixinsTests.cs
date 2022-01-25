@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 
-namespace Logger.Tests
-{
+namespace Logger.Tests;
+
     [TestClass]
     public class BaseLoggerMixinsTests
     {
@@ -45,4 +45,3 @@ namespace Logger.Tests
             LoggedMessages.Add((logLevel, message));
         }
     }
-}

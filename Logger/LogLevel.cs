@@ -1,5 +1,5 @@
-﻿namespace Logger
-{
+﻿namespace Logger;
+
     public enum LogLevel
     {
         Error,
@@ -7,4 +7,3 @@
         Information,
         Debug
     }
-}
