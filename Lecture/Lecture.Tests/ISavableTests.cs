@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace Lecture.Tests;
+﻿namespace Lecture.Tests;
 
 [TestClass]
 public class ISavableTests

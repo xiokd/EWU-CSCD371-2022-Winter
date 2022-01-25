@@ -9,6 +9,7 @@ class Program
 
         Console.WriteLine("Hello, World!");
         Console.WriteLine("Inigo Montoya: " + text);
+        Console.WriteLine(guid.ToString());
     }
 
 

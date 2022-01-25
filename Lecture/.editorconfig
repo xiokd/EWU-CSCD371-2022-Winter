@@ -1,0 +1,9 @@
+﻿[*.cs]
+
+# Default severity for analyzer diagnostics with category 'Globalization'
+dotnet_analyzer_diagnostic.category-Globalization.severity = none
+
+[*.{cs,vb}]
+dotnet_diagnostic.CA1303.severity=silent
+dotnet_diagnostic.CA1307.severity=silent
+dotnet_diagnostic.CA1308.severity=silent

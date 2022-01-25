@@ -1,16 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lecture;
+﻿namespace Lecture;
 
 public abstract class AThing : ISavable
 {
     public abstract string Name { get; set; }
 
-    public AThing(string name)
+    protected AThing(string name)
     {
         Name=name;
     }
