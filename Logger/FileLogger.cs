@@ -7,7 +7,7 @@ namespace Logger;
 
     public class FileLogger : BaseLogger
     {
-        private string _filePath;
+        private string _filePath { get; }
 
         public FileLogger(string filePath)
         {
@@ -16,7 +16,7 @@ namespace Logger;
 
         public override void Log(LogLevel logLevel, string message)
         {
-            File.WriteAllText(_filePath, $"{DateTime.Now:MM/dd/yyyy HH:mm:ss tt} " +
-                $"{nameof(ClassName)}: {message}");
+            File.AppendAllText(_filePath, $"{DateTime.Now:MM/dd/yyyy HH:mm:ss tt} " +
+                $"{nameof(ClassName)} {logLevel}: {message} {Environment.NewLine}");
         }
     }
