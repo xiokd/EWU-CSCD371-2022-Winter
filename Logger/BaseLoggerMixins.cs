@@ -14,35 +14,35 @@ namespace Logger;
             logger.Log(LogLevel.Error, string.Format(message, arguments));
         }
 
-    public static void Warning(this BaseLogger logger, string message, params object[] arguments)
-    {
-        if (logger == null)
+        public static void Warning(this BaseLogger logger, string message, params object[] arguments)
         {
-            throw new ArgumentNullException(nameof(logger));
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
+            logger.Log(LogLevel.Warning, string.Format(message, arguments));
         }
 
-        logger.Log(LogLevel.Warning, string.Format(message, arguments));
-    }
 
-
-    public static void Information(this BaseLogger logger, string message, params object[] arguments)
-    {
-        if (logger == null)
+        public static void Information(this BaseLogger logger, string message, params object[] arguments)
         {
-            throw new ArgumentNullException(nameof(logger));
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
+
+            logger.Log(LogLevel.Information, string.Format(message, arguments));
         }
 
-        logger.Log(LogLevel.Information, string.Format(message, arguments));
-    }
-
-    public static void Debug(this BaseLogger logger, string message, params object[] arguments)
-    {
-        if (logger == null)
+        public static void Debug(this BaseLogger logger, string message, params object[] arguments)
         {
-            throw new ArgumentNullException(nameof(logger));
-        }
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
 
-        logger.Log(LogLevel.Debug, string.Format(message, arguments));
-    }
+            logger.Log(LogLevel.Debug, string.Format(message, arguments));
+        }
 
 }
