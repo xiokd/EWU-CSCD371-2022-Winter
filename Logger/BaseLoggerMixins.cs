@@ -1,25 +1,48 @@
-﻿namespace Logger;
+﻿using System;
+
+namespace Logger;
 
     public static class BaseLoggerMixins
     {
-        public static void Error(string message)
+        public static void Error(this BaseLogger logger, string message, params object[] arguments)
         {
+            if (logger == null)
+            {
+                throw new ArgumentNullException(nameof(logger));
+            }
 
+            logger.Log(LogLevel.Error, string.Format(message, arguments));
         }
 
-        public static void Warning(string message)
+    public static void Warning(this BaseLogger logger, string message, params object[] arguments)
+    {
+        if (logger == null)
         {
-
+            throw new ArgumentNullException(nameof(logger));
         }
 
-        public static void Information(string message)
-        {
-        
-        }
-
-        public static void Debug(string message)
-        {
-
-        }
-
+        logger.Log(LogLevel.Warning, string.Format(message, arguments));
     }
+
+
+    public static void Information(this BaseLogger logger, string message, params object[] arguments)
+    {
+        if (logger == null)
+        {
+            throw new ArgumentNullException(nameof(logger));
+        }
+
+        logger.Log(LogLevel.Information, string.Format(message, arguments));
+    }
+
+    public static void Debug(this BaseLogger logger, string message, params object[] arguments)
+    {
+        if (logger == null)
+        {
+            throw new ArgumentNullException(nameof(logger));
+        }
+
+        logger.Log(LogLevel.Debug, string.Format(message, arguments));
+    }
+
+}
