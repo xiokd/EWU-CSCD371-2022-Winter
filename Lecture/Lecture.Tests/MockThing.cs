@@ -1,9 +1,9 @@
 ﻿namespace Lecture.Tests;
-internal class Thing : ISavable
+internal class MockThing : ISavable
 {
     public string Name { get; set; }
 
-    public Thing(string name)
+    public MockThing(string name)
     {
         Name=name;
     }

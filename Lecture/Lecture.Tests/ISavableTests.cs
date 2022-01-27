@@ -1,4 +1,7 @@
-﻿namespace Lecture.Tests;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
+namespace Lecture.Tests;
 
 [TestClass]
 public class ISavableTests
@@ -13,7 +16,7 @@ public class ISavableTests
     [TestMethod]
     public void SimpleSave_GivenAThing_ThingString()
     {
-        ISavable thing = new Thing("Thing 1");
+        ISavable thing = new MockThing("Thing 1");
         Assert.AreEqual<string?>("Name: Thing 1", thing.ToText());
     }
 

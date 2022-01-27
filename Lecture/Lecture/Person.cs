@@ -40,14 +40,14 @@ public class Person : Thing, ISavable
         get => _Name!;
 
         set { 
-            if(value is null) { throw new ArgumentNullException(nameof(value)); }
+            // if(value is null) { throw new ArgumentNullException(nameof(value)); }
             if(string.IsNullOrWhiteSpace(value)) { throw new ArgumentException(
                 $"{nameof(Name)} cannot be an empty or whitespace.", nameof(value)); }
             _Name = value; 
         }
     }
 
-    readonly (string, string)[] Credentials = new[] { 
+    (string, string)[] Credentials { get; } = new[] { 
         ("Inigo.Montoya", "YouKilledMyF@ther!")
     }; 
 

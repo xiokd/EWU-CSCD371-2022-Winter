@@ -4,8 +4,8 @@ namespace Lecture.Tests;
 public class Lecture1UnitTestingTests
 {
     Person Person { get; set; } = null!; // Assined in TestInitialize
-    string UserName = "";
-    string Password = "";
+    string UserName { get; set; } = "";
+    string Password { get; set; } = "";
 
     [TestInitialize]
     public void Initialize()
