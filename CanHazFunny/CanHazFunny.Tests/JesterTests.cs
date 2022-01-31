@@ -13,6 +13,8 @@ namespace CanHazFunny.Tests
             var jester = new Jester(jokeService, printService);
 
             // somehow test TellJoke() - make sure not empty?
+            // check that joke does not contain Chuck Norris
         }
+
     }
 }

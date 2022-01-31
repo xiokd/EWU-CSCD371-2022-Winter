@@ -17,7 +17,8 @@ namespace CanHazFunny
         {
             string joke = _jokeService.GetJoke();
 
-            // TODO: ensure joke is not a Chuck Norris joke
+            while (joke.Contains("Chuck Norris", StringComparison.OrdinalIgnoreCase))
+                joke = _jokeService.GetJoke();
 
             _printService.Print(joke);
         }
