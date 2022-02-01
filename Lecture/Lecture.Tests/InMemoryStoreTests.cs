@@ -6,7 +6,7 @@ public class InMemoryStorageTests
     [TestMethod]
     public void Save_GivenMockSavable_Success()
     {
-        InMemoryStore store = new();
+        InMemoryStore? store = new();
         MockThing mockThing = new("Inigo Montoya");
         store.Save(mockThing);
         Assert.AreEqual<string?>("Inigo Montoya", (store.Item as MockThing)?.Name);
