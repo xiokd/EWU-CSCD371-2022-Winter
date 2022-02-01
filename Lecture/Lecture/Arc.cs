@@ -1,21 +1,14 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Lecture;
+﻿namespace Lecture;
 
 public record struct Arc
 {
-    public Arc(int angle, int length)
+    public Arc(int startAngle, int sweeepAngle)
     {
-        Angle = angle;
-        Length = length;
+        StartAngle = startAngle;
+        SweepAngle = sweeepAngle;
     }
-    int Angle { get; }
-    int Length { get;  }
+    public int StartAngle { get; }
+    public int SweepAngle { get;  }
 
 
     // Don't do this!!!!
@@ -23,15 +16,4 @@ public record struct Arc
     //{
     //    Angle = 0;
     //}
-}
-
-[Microsoft.VisualStudio.TestTools.UnitTesting.TestClass]
-public class MyTestClass
-{
-    [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethod]
-    public void MyTestMethod()
-    {
-        Arc arc     = new Arc();
-        arc.ZeroOut();
-    }
 }

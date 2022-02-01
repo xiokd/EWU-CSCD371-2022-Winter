@@ -35,15 +35,5 @@ public class PersonTests
         Person person2 = new($"Inigo Montoya { datetime} ");
         Assert.IsTrue(person1 == person2);
     }
-
-    [TestMethod]
-    public void Equality_TwoEqualPersons_AreEqual()
-    {
-        string datetime = DateTime.Now.ToString();
-        Person person1 = new($"Inigo Montoya { datetime} ");
-        Person person2 = new($"Inigo Montoya { datetime} ");
-        Assert.IsTrue(person1 == person2.);
-
-    }
 }
 

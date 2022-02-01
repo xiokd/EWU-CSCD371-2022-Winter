@@ -1,5 +1,5 @@
 ﻿namespace Lecture;
-public class Student : Person
+public record class Student : Person
 {
     // This is bad design used for simplicity (don't do this at home) :)
     public Grade Grade { get; set; }
