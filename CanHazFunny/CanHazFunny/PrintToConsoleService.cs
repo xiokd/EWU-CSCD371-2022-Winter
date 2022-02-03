@@ -2,11 +2,8 @@
 
 namespace CanHazFunny
 {
-    public class PrintService : IPrint
+    public class PrintToConsoleService : IPrint
     {
-        public PrintService()
-        {
-        }
 
         public void Print(string text)
         {

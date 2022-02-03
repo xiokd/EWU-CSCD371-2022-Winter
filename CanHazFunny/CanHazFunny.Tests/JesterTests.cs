@@ -9,7 +9,7 @@ namespace CanHazFunny.Tests
         public void TellJoke_GivenJokeServiceAndPrintService_Success()
         {
             var jokeService = new JokeService();
-            var printService = new PrintService();
+            var printService = new PrintToConsoleService();
             var jester = new Jester(jokeService, printService);
 
             // somehow test TellJoke() - make sure not empty?

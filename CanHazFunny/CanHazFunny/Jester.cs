@@ -5,9 +5,9 @@ namespace CanHazFunny
     public class Jester
     {
         private JokeService _JokeService;
-        private PrintService _PrintService;
+        private PrintToConsoleService _PrintService;
 
-        public Jester(JokeService jokeService, PrintService printService)
+        public Jester(JokeService jokeService, PrintToConsoleService printService)
         {
             _JokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
             _PrintService = printService ?? throw new ArgumentNullException(nameof(printService));
