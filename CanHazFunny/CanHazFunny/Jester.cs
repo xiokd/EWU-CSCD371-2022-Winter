@@ -4,10 +4,10 @@ namespace CanHazFunny
 {
     public class Jester
     {
-        private JokeService _JokeService;
-        private PrintToConsoleService _PrintService;
+        private IGetJoke? _JokeService;
+        private IPrint? _PrintService;
 
-        public Jester(JokeService jokeService, PrintToConsoleService printService)
+        public Jester(IGetJoke? jokeService, IPrint? printService)
         {
             _JokeService = jokeService ?? throw new ArgumentNullException(nameof(jokeService));
             _PrintService = printService ?? throw new ArgumentNullException(nameof(printService));
@@ -15,12 +15,12 @@ namespace CanHazFunny
 
         public void TellJoke()
         {
-            string joke = _JokeService.GetJoke();
+            string? joke = _JokeService?.GetJoke();
 
             while (joke.Contains("Chuck Norris", StringComparison.OrdinalIgnoreCase))
-                joke = _JokeService.GetJoke();
+                joke = _JokeService?.GetJoke();
 
-            _PrintService.Print(joke);
+            _PrintService?.Print(joke);
         }
     }
 }

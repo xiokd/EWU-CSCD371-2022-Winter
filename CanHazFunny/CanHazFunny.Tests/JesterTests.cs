@@ -1,48 +1,64 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.IO;
+using Moq;
 
 namespace CanHazFunny.Tests
 {
     [TestClass]
     public class JesterTests
     {
-        [TestMethod]
-        public void TellJoke_GivenJokeServiceAndPrintService_Success()
-        {
-            var jokeService = new JokeService();
-            var printService = new PrintToConsoleService();
-            var jester = new Jester(jokeService, printService);
-
-            // somehow test TellJoke() - make sure not empty?
-            // check that joke does not contain Chuck Norris
-        }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Jester_WithNullJokeService_ThrowsException()
         {
-            _ = new Jester(null, new PrintService());
+            new Jester(null!, new PrintToConsoleService());
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void Jester_WithNullPrintService_ThrowsException()
         {
-            _ = new Jester(new JokeService(), null);
+            new Jester(new JokeService(), null!);
         }
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void Jester_WithNullJokeServiceAndNullPrintService_ThrowsException()
+        {
+            new Jester(null!, null!);
+        }
 
         [TestMethod]
-        public void TellJoke_JesterJokeOutputIsNotNullOrEmpty_False()
+        public void TellJoke_OutputIsNotNullOrEmpty_False()
         {
             var stringWriter = new StringWriter();
             Console.SetOut(stringWriter);
 
-            new Jester(new JokeService(), new PrintService()).TellJoke();
+            new Jester(new JokeService(), new PrintToConsoleService()).TellJoke();
 
             Assert.IsFalse(String.IsNullOrEmpty(stringWriter.ToString()));
+
+            stringWriter.Dispose();
         }
 
+        [TestMethod]
+        public void TellJoke_OutputContainsChuckNorris_False()
+        {
+            var stringWriter = new StringWriter();
+            Console.SetOut(stringWriter);
+
+            Mock<IGetJoke> jokeServiceMock = new();
+            jokeServiceMock.SetupSequence(x => x.GetJoke())
+                .Returns(new string("Chuck Norris"))
+                .Returns(new string("this is a joke, right?"));
+
+            new Jester(jokeServiceMock.Object, new PrintToConsoleService()).TellJoke();
+
+            Assert.IsFalse((stringWriter.ToString()).Contains("Chuck Norris"));
+
+            stringWriter.Dispose();
+        }
     }
 }

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CanHazFunny
 {
-    interface IPrint
+    public interface IPrint
     {
         public void Print(string text);
     }
