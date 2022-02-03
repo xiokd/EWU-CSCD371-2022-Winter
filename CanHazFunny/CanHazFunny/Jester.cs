@@ -17,10 +17,12 @@ namespace CanHazFunny
         {
             string? joke = _JokeService?.GetJoke();
 
-            while (joke.Contains("Chuck Norris", StringComparison.OrdinalIgnoreCase))
+            if (joke == null) { throw new ArgumentNullException(nameof(joke)); }
+
+            while (joke!.Contains("Chuck Norris", StringComparison.OrdinalIgnoreCase))
                 joke = _JokeService?.GetJoke();
 
-            _PrintService?.Print(joke);
+            _PrintService?.Print(joke!);
         }
     }
 }

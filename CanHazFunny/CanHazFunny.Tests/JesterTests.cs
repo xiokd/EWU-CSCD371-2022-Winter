@@ -60,5 +60,12 @@ namespace CanHazFunny.Tests
 
             stringWriter.Dispose();
         }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TellJoke_JokeIsEmptyOrNull_ThrowsException()
+        {
+            Mock jester = new Mock<IGetJoke>();
+        }
     }
 }
