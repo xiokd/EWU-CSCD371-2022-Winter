@@ -5,6 +5,8 @@
     <Nullable>enable</Nullable>
     <LangVersion>10.0</LangVersion>
     <TargetFramework>net6.0</TargetFramework>
+	<EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
   </PropertyGroup>
 
 </Project>
