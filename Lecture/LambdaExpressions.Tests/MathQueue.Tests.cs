@@ -6,10 +6,15 @@ namespace LambdaExpressions.Tests
     [TestClass]
     public class MathQueueTests
     {
+
+
         [TestMethod]
         public void TestMethod1()
         {
             MathQueue mathQueue = new MathQueue();
+
+            mathQueue.Queue(42, 4.2,  (MathOperation<double>) ((left, right) => left*right));
+
             mathQueue.Queue(42, 4.2, Add);
 
             Func<int, double, double> multiply = (left, right) => left * right;
