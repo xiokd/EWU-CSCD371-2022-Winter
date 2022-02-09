@@ -20,43 +20,34 @@
         {
             if(Exists(value)) { throw new ArgumentException("The value already exists"); }
 
-            Node<T> node = new(value);
-            Node<T> currentNext = this.GetNext();
+            Node<T> newNode = new(value);
+            Node<T> currentNode = this.Next;
 
-            while(currentNext.GetNext() != this) { currentNext = currentNext.GetNext(); }
+            while(currentNode.Next != this) { currentNode = currentNode.Next; }
 
-            currentNext.SetNext(node);
-            node.SetNext(this);
+            currentNode.Next = newNode;
+            newNode.Next = this;
         }
 
         public void Clear()
         {
-            // TODO: implement Clear() method
+            // don't need to garbage collect as c# does so automatically
+            Next = this;
         }
 
         public bool Exists(T value)
         {
             if(this.Value.Equals(value)) { return true; }
 
-            Node<T> currentNext = this.GetNext();
+            Node<T> currentNode = this.Next;
 
-            while(currentNext != this)
+            while(currentNode != this)
             {
-                if(currentNext.Value.Equals(value)) { return true; }
-                currentNext = currentNext.GetNext();
+                if(currentNode.Value.Equals(value)) { return true; }
+                currentNode = currentNode.Next;
             }
 
             return false;
-        }
-
-        public Node<T> GetNext()
-        {
-            return this.Next;
-        }
-
-        public void SetNext(Node<T> next)
-        {
-            this.Next = next;
         }
     }
 }

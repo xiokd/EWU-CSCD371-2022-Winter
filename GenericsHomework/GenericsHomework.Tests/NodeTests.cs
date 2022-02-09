@@ -6,12 +6,11 @@ namespace GenericsHomework.Tests
     public class NodeTests
     {
 
-        // TODO: Implement tests
-
         [TestMethod]
-        public void TestMethod1()
+        public void ToString_ReturnsStringValue()
         {
-
+            Node<string> node = new("value");
+            Assert.AreEqual("value", node.ToString());
         }
     }
 }
