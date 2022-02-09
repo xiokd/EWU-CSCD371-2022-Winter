@@ -11,16 +11,18 @@
             InternalQueue.Add((operation, left, right));
         }
 
-        //public void Queue(int left, double right, MathOperation<double> operation)
-        //{
-        //    double result = operation(left, right, 0);
-        //}
+        public void Queue(int left, double right, MathOperation<double> operation)
+        {
+            double result = operation(left, right, 0);
+        }
 
         public double Calculate()
         {
             double result = 0;
-            foreach(var item in InternalQueue)
+            foreach(
+                (Func<int, double, double> Operation, int Left, double Right) item in InternalQueue)
             {
+
                 result += item.Operation(item.Left, item.Right);
             }
             return result;

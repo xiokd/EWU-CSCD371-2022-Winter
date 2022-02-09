@@ -13,7 +13,7 @@ namespace LambdaExpressions.Tests
         {
             MathQueue mathQueue = new MathQueue();
 
-            mathQueue.Queue(42, 4.2,  (MathOperation<double>) ((left, right) => left*right));
+            mathQueue.Queue(42, 4.2,  (MathOperation<double>) ((left, right, more) => left*right*more));
 
             mathQueue.Queue(42, 4.2, Add);
 
@@ -24,6 +24,8 @@ namespace LambdaExpressions.Tests
             mathQueue.Queue(42, 4.2,
                 (left, right) => left/right
             );
+
+            Func<int, int> oneParamAction = left => left;
 
             Action<int, double> doSomething = (left, right) =>
              {
