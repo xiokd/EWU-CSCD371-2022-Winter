@@ -1,4 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace LambdaExpressions.Tests
 {
@@ -8,6 +9,36 @@ namespace LambdaExpressions.Tests
         [TestMethod]
         public void TestMethod1()
         {
+            MathQueue mathQueue = new MathQueue();
+            mathQueue.Queue(42, 4.2, Add);
+
+            Func<int, double, double> multiply = (left, right) => left * right;
+            
+            mathQueue.Queue(42, 4.2, multiply);
+
+            mathQueue.Queue(42, 4.2,
+                (left, right) => left/right
+            );
+
+            Action<int, double> doSomething = (left, right) =>
+             {
+                 double result = left+right;
+                 Console.WriteLine(result*result);
+             };
+
+            mathQueue.Queue(42, 4.2,
+                (left, right) =>
+                {
+                    double result= left+right;
+                    return result*result;
+                }
+            ) ;
+
+            // ???? Max (int left, int right) => left > right ? right : left;
         }
+
+        private double Add(int left, double right)
+            => left + right;
+
     }
 }
