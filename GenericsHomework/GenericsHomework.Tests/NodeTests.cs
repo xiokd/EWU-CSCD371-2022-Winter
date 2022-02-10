@@ -17,6 +17,16 @@ namespace GenericsHomework.Tests
         }
 
         [TestMethod]
+        public void ToString_NodeGivenNullValue_ReturnNull()
+        {
+            Node<string> node = new(null!);
+
+            var result = node.ToString();
+
+            Assert.AreEqual<string?>(null, result);
+        }
+
+        [TestMethod]
         public void Append_GivenNewValues_Success()
         {
             Node<string> node = GetNodes();
@@ -56,16 +66,6 @@ namespace GenericsHomework.Tests
             Assert.IsFalse(node.Exists("Baggy"));
             Assert.IsFalse(node.Exists("hi"));
             Assert.IsTrue(node.Exists("value"));
-        }
-
-        [TestMethod]
-        public void ToString_ValueIsNull_ReturnNull()
-        {
-            Node<string> node = new(null!);
-
-            var result = node.ToString();
-
-            Assert.AreEqual<string?>(null, result);
         }
 
         private static Node<string> GetNodes()
