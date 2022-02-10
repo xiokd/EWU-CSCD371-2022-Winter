@@ -58,6 +58,14 @@ namespace GenericsHomework.Tests
             Assert.IsTrue(node.Exists("value"));
         }
 
+        [TestMethod]
+        public void ToString_ValueIsNull_ReturnNull()
+        {
+            Node<string> node = new(null!);
+
+            Assert.AreEqual<string?>(null, node.ToString());
+        }
+
         private static Node<string> GetNodes()
         {
             Node<string> node = new("value");
