@@ -63,7 +63,9 @@ namespace GenericsHomework.Tests
         {
             Node<string> node = new(null!);
 
-            Assert.AreEqual<string?>(null, node.ToString());
+            var result = node.ToString();
+
+            Assert.AreEqual<string?>(null, result);
         }
 
         private static Node<string> GetNodes()
