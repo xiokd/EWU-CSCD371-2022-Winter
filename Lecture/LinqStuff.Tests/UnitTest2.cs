@@ -2,7 +2,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace LinqStuff.Tests
 {
-    // Mark was here
+
     public static class IEnumerableEx
     {
         static public IEnumerable<T> Filter<T>(this IEnumerable<T> items /* lambda expression */)
