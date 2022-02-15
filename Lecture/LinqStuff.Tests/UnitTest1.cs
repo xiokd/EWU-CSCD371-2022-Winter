@@ -7,7 +7,7 @@ namespace LinqStuff.Tests
     {
         static public IEnumerable<T> Filter<T>(this IEnumerable<T> items /* lambda expression */)
         {
-
+            // System.Reflection.Assembly.GetExecutingAssembly().Location
             return null;
         }
     }
@@ -17,7 +17,12 @@ namespace LinqStuff.Tests
     public class UnitTest1
     {
 
-
+        [DeploymentItem("Data\\Data.txt")]
+        [TestMethod]
+        public void MyTestMethod()
+        {
+            Assert.IsTrue(File.Exists("Data\\Data.txt"));
+        }
 
         [TestMethod]
         public void TestMethod1()

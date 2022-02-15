@@ -25,15 +25,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture07", "Lecture07", "{
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture.01-06", "Lecture.01-06", "{DCE84479-A644-4330-BFFB-E99EAAE7939D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaExpressions", "LambdaExpressions\LambdaExpressions.csproj", "{9873659B-C605-4B81-996F-791A04966C4E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaExpressions", "LambdaExpressions\LambdaExpressions.csproj", "{9873659B-C605-4B81-996F-791A04966C4E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture9", "Lecture9", "{D8068DF9-298D-4288-A748-823505069742}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LambdaExpressions.Tests", "LambdaExpressions.Tests\LambdaExpressions.Tests.csproj", "{B7D49A7B-DD30-4266-8051-667970077ACB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LambdaExpressions.Tests", "LambdaExpressions.Tests\LambdaExpressions.Tests.csproj", "{B7D49A7B-DD30-4266-8051-667970077ACB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture10", "Lecture10", "{789DC9CA-5E8E-40A2-BEBB-BBADFCA2FEE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LinqStuff.Tests", "LinqStuff.Tests\LinqStuff.Tests.csproj", "{016615D2-FBC9-4936-9B3E-5B8532D6BFE9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqStuff.Tests", "LinqStuff.Tests\LinqStuff.Tests.csproj", "{016615D2-FBC9-4936-9B3E-5B8532D6BFE9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
