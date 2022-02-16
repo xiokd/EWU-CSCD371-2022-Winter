@@ -2,9 +2,9 @@ name: .NET
 
 on:
   push:
-    branches: [ Assignment* ]
+    branches: [ Assignment** ]
   pull_request:
-    branches: [ Assignment* ]
+    branches: [ Assignment** ]
 
 defaults:
       run:
