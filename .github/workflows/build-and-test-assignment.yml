@@ -1,4 +1,4 @@
-name: .NET
+name: Build and Test Assignments
 
 on:
   push:
@@ -12,12 +12,11 @@ defaults:
         
 jobs:
   build:
+    name: build-and-test
     runs-on: ubuntu-latest
-
-
     steps:
     - uses: actions/checkout@v2
-    - name: Setup .NET
+    - name: Setup .NET SDK
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 6.0.x
@@ -26,4 +25,4 @@ jobs:
     - name: Build
       run: dotnet build --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test --no-build --no-restore --verbosity normal
