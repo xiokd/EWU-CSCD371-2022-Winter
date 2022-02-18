@@ -1,12 +1,26 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+
 
 namespace Assignment
 {
     public class SampleData : ISampleData
     {
         // 1.
-        public IEnumerable<string> CsvRows => throw new NotImplementedException();
+        public IEnumerable<string> CsvRows
+        {
+            get
+            {
+                string fileName = "People.csv";
+                string buildPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
+                string? directoryPath = Path.GetDirectoryName(buildPath);
+                string fullFilePath = Path.Combine(directoryPath!, fileName); // TODO: temporary change, to be fixed.
+
+                return File.ReadLines(fullFilePath).Skip(1);
+            }
+        }
 
         // 2.
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows() 
