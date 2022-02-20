@@ -4,6 +4,12 @@
     <ProjectReference Include="..\Assignment.Interfaces\Assignment.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="People.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
