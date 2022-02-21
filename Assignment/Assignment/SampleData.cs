@@ -13,10 +13,10 @@ namespace Assignment
         {
             get
             {
-                string fileName = "People.csv";
-                string buildPath = System.Reflection.Assembly.GetExecutingAssembly().Location;
-                string? directoryPath = Path.GetDirectoryName(buildPath);
-                string fullFilePath = Path.Combine(directoryPath!, fileName); // TODO: temporary change, to be fixed.
+                string? directoryPath = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+
+                if(directoryPath is null) { throw new DirectoryNotFoundException("Directory was not found"); }
+                string fullFilePath = Path.Combine(directoryPath, "People.csv");
 
                 return File.ReadLines(fullFilePath).Skip(1);
             }
@@ -87,6 +87,9 @@ namespace Assignment
 
         // 6.
         public string GetAggregateListOfStatesGivenPeopleCollection(
-            IEnumerable<IPerson> people) => throw new NotImplementedException();
+            IEnumerable<IPerson> people)
+        {
+            return people.Select(item => item.Address.State).Distinct().Aggregate((stateList , nextState) => $"{stateList}, {nextState}");
+        }
     }
 }
