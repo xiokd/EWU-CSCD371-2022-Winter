@@ -25,9 +25,8 @@ namespace Assignment
         public IEnumerable<string> GetUniqueSortedListOfStatesGivenCsvRows()
         {
             // format is Id,FirstName,LastName,Email,StreetAddress,City,State,Zip
-            // Distinct for Unique
 
-            return CsvRows.Select(item => item.Split(',')[6]).Distinct().OrderBy(item => item);
+            return CsvRows.Select(item => item.Split(',')[6]).Distinct().OrderBy(item => item).ToList();
         }
 
         // 3.
@@ -56,6 +55,8 @@ namespace Assignment
                     .OrderBy(item => item[6])
                     .ThenBy(item => item[5])
                     .ThenBy(item => item[7]));
+                    //.Select(person =>
+                    //    new Person(person[1], person[2], new Address(person[4], person[5], person[6], person[7]), person[3]));
 
                 IEnumerable<Person> persons = 
                     from item in CsvRows
