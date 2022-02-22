@@ -11,6 +11,16 @@ namespace Assignment.Tests
     public class SampleDataTest
     {
         [TestMethod]
+        public void CsvRows_SkipsFirstLineAndIteratesThroughCSVFile_Success()
+        {
+            SampleData sampleData = new();
+
+            int result = sampleData.CsvRows.Count();
+
+            Assert.AreEqual(50, result);
+        }
+
+        [TestMethod]
         public void GetUniqueSortedListOfStatesGivenCsvRows_UsingHardcodedList_Success()
         {
             SampleData sampleData = new SampleData();
@@ -33,7 +43,7 @@ namespace Assignment.Tests
 
             int expected = list.Distinct().Count();
 
-            Assert.AreEqual(expected, list.Count());
+            Assert.AreEqual<int>(expected, list.Count());
         }
 
         [TestMethod]
@@ -49,6 +59,28 @@ namespace Assignment.Tests
 
             Assert.AreNotEqual(unsortedList, list);
             Assert.AreNotEqual(unsortedList.First(), list.First());
+        }
+
+        [TestMethod]
+        public void GetAggregateSortedListOfStatesUsingCsvRows_ValidateSortedListOfStates_Success()
+        {
+            SampleData sampleData = new();
+            string expected = "AL,AZ,CA,DC,FL,GA,IN,KS,LA,MD,MN,MO,MT,NC,NE,NH,NV,NY,OR,PA,SC,TN,TX,UT,VA,WA,WV";
+
+            string result = sampleData.GetAggregateSortedListOfStatesUsingCsvRows();
+
+            Assert.AreEqual<string>(expected, result);
+        }
+
+        [TestMethod]
+        public void GetAggregateListOfStatesGivenPeopleCollection_Validate_Success()
+        {
+            SampleData sampleData = new();
+
+            string csvRowsResult = sampleData.GetAggregateSortedListOfStatesUsingCsvRows();
+            string givenPeopleResult = sampleData.GetAggregateListOfStatesGivenPeopleCollection(sampleData.People);
+
+            Assert.AreEqual<string>(csvRowsResult, givenPeopleResult);
         }
 
         //private IEnumerable<Address> GetSpokaneAddresses()

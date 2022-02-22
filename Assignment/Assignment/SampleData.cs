@@ -73,7 +73,7 @@ namespace Assignment
         public string GetAggregateListOfStatesGivenPeopleCollection(
             IEnumerable<IPerson> people)
         {
-            return people.Select(item => item.Address.State).Distinct().Aggregate((stateList , nextState) => $"{stateList}, {nextState}");
+            return people.Select(item => item.Address.State).Distinct().Aggregate((stateList , nextState) => $"{stateList},{nextState}");
         }
     }
 }
