@@ -59,17 +59,19 @@ namespace GenericsHomework
 
         public IEnumerator<T> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return (IEnumerator<T>) this.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return (IEnumerator) GetEnumerator();
         }
 
         public IEnumerable<T> ChildItems(int maximum)
         {
-            throw new NotImplementedException();
+            if (maximum < 0) throw new ArgumentOutOfRangeException("Maximum must be greater than 0");
+
+            return (IEnumerable<T>)ChildItems(maximum);
         }
     }
 }
