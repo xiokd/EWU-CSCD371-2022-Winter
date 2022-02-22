@@ -51,30 +51,30 @@ namespace Assignment
                 // Address has string StreetAddress, string City, string State, string Zip
 
                 // sort the list by State, City, Zip
-                var sortedRows = CsvRows.Select(item => item.Split(',')
+                IEnumerable<IPerson> people = CsvRows.Select(item => item.Split(','))
                     .OrderBy(item => item[6])
                     .ThenBy(item => item[5])
-                    .ThenBy(item => item[7]));
-                    //.Select(person =>
-                    //    new Person(person[1], person[2], new Address(person[4], person[5], person[6], person[7]), person[3]));
+                    .ThenBy(item => item[7])
+                    .Select(person =>
+                        new Person(person[1], person[2], new Address(person[4], person[5], person[6], person[7]), person[3]));
 
-                IEnumerable<Person> persons = 
-                    from item in CsvRows
-                    let line = item.Split(',')
-                    select new Person(
-                        firstName: line[1],
-                        lastName: line[2],
-                        emailAddress: line[3],
-                        address: new Address(
-                            streetAddress: line[4],
-                            city: line[5],
-                            state: line[6],
-                            zip: line[7]
-                            )
-                        );
+                //IEnumerable<Person> persons = 
+                //    from item in CsvRows
+                //    let line = item.Split(',')
+                //    select new Person(
+                //        firstName: line[1],
+                //        lastName: line[2],
+                //        emailAddress: line[3],
+                //        address: new Address(
+                //            streetAddress: line[4],
+                //            city: line[5],
+                //            state: line[6],
+                //            zip: line[7]
+                //            )
+                //        );
 
                 // TODO: figure out how to use sortedRows in person selection
-                return persons;
+                return people;
             }
         }
 
