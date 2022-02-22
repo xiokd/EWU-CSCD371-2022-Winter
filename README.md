@@ -34,9 +34,10 @@ Just like when working as a software developer, the web will be your primary sou
   - When clicked, the menu should appear under it ❌✔
   - The menu should have four buttons with creative names (the buttons don't need to do anything) ❌✔
 
-### Create a card from CSS
+### Create a card with `<div>`s and CSS
 - Create a card from `<div>`s ❌✔
   - The card should have a header, body, and footer ❌✔
+  - The CSS for this should be in the CSS file and work easily for another card. ❌✔
 
 ### Show jokes on the card
 - Use the joke API from the first assignment to display a joke on a card (https://v2.jokeapi.dev/joke/Programming) ❌✔
