@@ -5,12 +5,19 @@
     <!-- Make sure you have this
         section in your HTML file. -->
     <title>Meg's Special Page</title>
+    <link rel="stylesheet" href="css/site.css">
 </head>
 
 <body>
-    <div>
+    <div id="Something">
         <p style="font-weight: bold;">
             This is <span style="color:red;">some</span> text.
+        </p>
+        <p class="special">
+            This is special text.
+        </p>
+        <p class="special">
+            This is another special text.
         </p>
     </div>
     <div>
@@ -30,6 +37,22 @@
                 height="50" width="50" alt="Meg" />
         </div>
     </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th class="name">Name</th>
+                <th class="description">Description</th>
+                <th class="price text-right">Price</th>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Princess Bride BluRay DVD</td>
+                <td>NEW and IMPROVED HDR version of the classic!! For &lt; &euro;30!!!</td>
+                <td class="text-right">&euro;29.99</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 
 </html>
