@@ -59,10 +59,17 @@ table {
 
 }
 
-.price{
+.price {
     width: 250px;
 }
 
-.text-right {
+.text-right{
     text-align: right;
+}
+
+tfoot {
+    background-color: lightgrey;
+}
+tfoot tr th {
+    border-top: 10px double black;
 }
