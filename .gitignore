@@ -280,3 +280,6 @@ __pycache__/
 
 # Visual Studio code
 .vscode/
+
+# Apple Mac OS
+.DS_Store
