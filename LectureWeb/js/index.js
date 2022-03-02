@@ -34,3 +34,12 @@ axios({
     .catch(function (error) {
         console.log(error);
     });
+
+function writePerson() {
+
+    console.log("Hello World: " + person.getName() + " is " + person.age());
+    setTimeout(writePerson, 5000); 
+}
+
+
+setTimeout(writePerson, 5000); 
