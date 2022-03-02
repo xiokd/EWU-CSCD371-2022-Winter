@@ -73,3 +73,19 @@ tfoot {
 tfoot tr th {
     border-top: 10px double black;
 }
+
+.menu {
+    border: 1px solid black;
+    width: 350px;
+    padding: 20px;
+    position: fixed;
+    top: 100px;
+    left: 100px;
+}
+
+.menu button {
+    width: 100%;
+    margin: 0;
+    padding: 10px;
+    border: 4px solid gray;
+}
