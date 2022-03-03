@@ -8,3 +8,20 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+
+<script>
+    let index;
+
+    getWordCount();
+
+    function getWordCount(){
+        axios.get('/api/wordle/WordCount')
+            .then(response => {
+                let max = response.data;
+                let randomIndex = Math.floor(Math.random() * max);
+                console.log(randomIndex);
+                index = randomIndex;
+            })
+    }
+</script>
