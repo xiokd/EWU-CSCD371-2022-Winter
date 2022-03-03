@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0:
+}
+
+hr {
+    color: lightgray;
+}
+
+.wrapper {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.header {
+    height: 60px;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.ewu {
+    color: #A10022;
+    margin-left: 1%;
+    font-size: 50px;
+    font-weight: lighter;
+}
+
+.menu {
+    color: white;
+    margin-right: 1%;
+    font-size: 30px;
+}
+
+.title {
+    height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.jokecard {
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.jokecard_title_background {
+    background-color: lightgray;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    
+}
+
+.jokecard_title_text {
+    margin-left: 1%;
+}
+
+.jokecard_display {
+    height: 90px;
+}
+
+.jokecard_button_display {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-top: 1px solid black;
+}
