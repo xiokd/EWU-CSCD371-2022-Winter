@@ -43,3 +43,17 @@ function writePerson() {
 
 
 setTimeout(writePerson, 5000); 
+
+// setInterval(keepTime, 5000)
+// var lastTime = new Date();
+// var delayInMs = 5000;
+// function keepTime(){
+//     let now = Date();
+//     if (now - lastTime > delayinMs){
+//         // Run your code.
+
+//         lasttime = now;
+//     }    
+// }
+console.log(new Date().getTime());
+setInterval(function() {console.log(new Date().getTime());}, 1000);
