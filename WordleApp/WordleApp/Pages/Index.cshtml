@@ -7,6 +7,14 @@
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <div>
+        <input class="form-control mb-3" id="guess" type="text" />
+        <button onclick="checkWord()" id="guess-btn" class="btn btn-primary btn-lg">Guess</button>
+    </div>
+
+    <div id="result">
+
+    </div>
 </div>
 
 
@@ -23,5 +31,33 @@
                 console.log(randomIndex);
                 index = randomIndex;
             })
+    }
+
+    function checkWord(){
+        let guess = document.getElementById("guess").value;
+        console.log(guess);
+
+        axios.post('/api/wordle/guess', { MyGuess: guess, WordIndex: index })
+            .then(response => {
+                console.log(response);
+                let html = "<div>";
+                for(let character of response.data){
+                    if(character.state === 0){
+                        // Wrong letter
+                        html += `<span class="badge bg-secondary">${character.character}</span>`;
+                    } else if(character.state === 1){
+                        // Right letter wrong place
+                        html += `<span class="badge bg-info">${character.character}</span>`;
+                    } else if(character.state === 2){
+                        // Right letter right place
+                        html += `<span class="badge bg-success">${character.character}</span>`;
+                    }
+                }
+                html += "</div>";
+
+                let element = document.getElementById("result");
+                console.log(html);
+                element.innerHTML += html;
+            });
     }
 </script>

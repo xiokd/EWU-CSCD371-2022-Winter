@@ -28,11 +28,12 @@ namespace WordleApp.Controllers
             return Words.Count;
         }
 
-        public List<Letter> Guess(int wordIndex, string guess)
+        [HttpPost("guess")]
+        public List<Letter> Guess([FromBody] Guess guess)
         {
-            var word = Words[wordIndex];
+            var word = Words[guess.WordIndex];
 
-            List<Letter> result = CheckGuess(guess, word);
+            List<Letter> result = CheckGuess(guess.MyGuess!.ToLower(), word.ToLower());
 
             return result;
         }
@@ -72,6 +73,12 @@ namespace WordleApp.Controllers
     {
         public char Character { get; set; }
         public Validness State { get; set; }
+    }
+
+    public class Guess
+    {
+        public string? MyGuess { get; set; }
+        public int WordIndex { get; set; }
     }
 
     public enum Validness
