@@ -7,9 +7,9 @@ namespace WordleApp.Controllers
     [ApiController]
     public class WordleController : ControllerBase
     {
-        private List<string>? _Words;
+        private static List<string>? _Words;
 
-        public List<string> Words
+        public static List<string> Words
         {
             get
             {
@@ -29,16 +29,39 @@ namespace WordleApp.Controllers
         }
 
         [HttpPost("guess")]
-        public List<Letter> Guess([FromBody] Guess guess)
+        public Response<List<Letter>> Guess([FromBody] Guess guess)
         {
+            if (guess == null) return new Response("You must submit a response");
+
+            if (guess.WordIndex >= Words.Count || guess.WordIndex < 0) return new Response($"Invalid word index. Index must be between 0 and {Words.Count - 1}");
             var word = Words[guess.WordIndex];
 
-            List<Letter> result = CheckGuess(guess.MyGuess!.ToLower(), word.ToLower());
-
-            return result;
+            return CheckGuess(guess, word);
         }
 
-        public static List<Letter> CheckGuess(string guess, string word)
+
+        private static Response<List<Letter>> CheckGuess(Guess guess, string word)
+        {
+            if (guess.MyGuess is null) return new Response($"Guess cannot be blank");
+
+            if (guess.MyGuess.Length != 5) return new Response($"Guess must be 5 letters");
+
+            guess.MyGuess = guess.MyGuess.ToLower();
+
+            if (!IsWord(guess.MyGuess)) return new Response("The guess is not a word");
+
+            // Now that we have checked everything else, actually do the guess.
+            List<Letter> result = GetLetterResults(guess.MyGuess!.ToLower(), word.ToLower());
+
+            return new Response(result);
+        }
+
+        public static bool IsWord(string guess)
+        {
+            return (Words.Contains(guess));
+        }
+
+        public static List<Letter> GetLetterResults(string guess, string word)
         {
             List<Letter> result = new();
 
