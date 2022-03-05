@@ -29,7 +29,7 @@ namespace WordleApp.Controllers
         }
 
         [HttpPost("guess")]
-        public Response<List<Letter>> Guess([FromBody] Guess guess)
+        public Response Guess([FromBody] Guess guess)
         {
             if (guess == null) return new Response("You must submit a response");
 
@@ -40,7 +40,7 @@ namespace WordleApp.Controllers
         }
 
 
-        private static Response<List<Letter>> CheckGuess(Guess guess, string word)
+        public static Response CheckGuess(Guess guess, string word)
         {
             if (guess.MyGuess is null) return new Response($"Guess cannot be blank");
 
@@ -92,23 +92,10 @@ namespace WordleApp.Controllers
         }
     }
 
-    public class Letter
-    {
-        public char Character { get; set; }
-        public Validness State { get; set; }
-    }
-
     public class Guess
     {
         public string? MyGuess { get; set; }
         public int WordIndex { get; set; }
-    }
-
-    public enum Validness
-    {
-        WrongLetter = 0,
-        RightLetteWrongPlace = 1,
-        RightLetterRightPlace = 2
     }
 
 }
