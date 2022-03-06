@@ -1,6 +1,6 @@
 * {
     margin: 0;
-    padding: 0:
+    padding: 0;
 }
 
 hr {
@@ -37,6 +37,25 @@ hr {
     background-color: transparent;
     outline: none;
     border: none;
+}
+
+.list_button {
+    color: white;
+    background: linear-gradient(to left, #0099ff 0%, #00cc99 100%);
+    width: 200px;
+    padding: 5px 5px 5px 5px;
+    border-radius: 8px;
+}
+
+.button_list {  
+    position: absolute; 
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: 0.3s;
+}
+
+.button_list_click {
+    transform: scaleY(1);
 }
 
 .title {
