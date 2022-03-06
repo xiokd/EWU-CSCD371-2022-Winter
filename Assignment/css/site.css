@@ -28,9 +28,15 @@ hr {
 }
 
 .menu {
-    color: white;
     margin-right: 1%;
+}
+
+.menu_button {
+    color: white;
     font-size: 30px;
+    background-color: transparent;
+    outline: none;
+    border: none;
 }
 
 .title {
@@ -58,8 +64,8 @@ hr {
     margin-left: 1%;
 }
 
-.jokecard_display {
-    height: 90px;
+.jokecard_content {
+    margin: 30px 10px 30px 10px;
 }
 
 .jokecard_button_display {
@@ -67,4 +73,17 @@ hr {
     display: flex;
     align-items: center;
     border-top: 1px solid black;
+}
+
+.joke_button {
+    margin-left: 10px;
+    padding: 10px;
+}
+
+.another_joke {
+    border-radius: 0px;
+}
+
+.colored_button {
+    background: linear-gradient(to left, #0099ff 0%, #00cc99 100%);
 }
