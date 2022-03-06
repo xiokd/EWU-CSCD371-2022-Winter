@@ -16,3 +16,12 @@ html {
 body {
   margin-bottom: 60px;
 }
+
+#guess{
+    font-size:24px;
+    text-align: center;
+}
+
+#guess-btn{
+    width: 100%;
+}

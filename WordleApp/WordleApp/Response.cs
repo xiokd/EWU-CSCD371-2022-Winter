@@ -5,11 +5,13 @@
         public List<Letter>? Data { get; set; }
         public bool IsValidGuess { get; set; }
         public string? Message { get; set; }
+        public bool Winner { get; set; } = false;
 
         public Response(List<Letter> data)
         {
             Data = data;
             IsValidGuess = true;
+            Winner = data.All(f => f.State == Validness.RightLetterRightPlace);
         }
         public Response(string message)
         {

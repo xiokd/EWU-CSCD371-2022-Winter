@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Text.RegularExpressions;
 
 namespace WordleApp.Controllers
 {
@@ -8,6 +9,7 @@ namespace WordleApp.Controllers
     public class WordleController : ControllerBase
     {
         private static List<string>? _Words;
+        private const string ValidLetters = "abcdefghijklmnopqrstuvwxyz";
 
         public static List<string> Words
         {
@@ -36,22 +38,23 @@ namespace WordleApp.Controllers
             if (guess.WordIndex >= Words.Count || guess.WordIndex < 0) return new Response($"Invalid word index. Index must be between 0 and {Words.Count - 1}");
             var word = Words[guess.WordIndex];
 
-            return CheckGuess(guess, word);
+            return CheckGuess(guess.MyGuess, word);
         }
 
 
-        public static Response CheckGuess(Guess guess, string word)
+        public static Response CheckGuess(string? guess, string word)
         {
-            if (guess.MyGuess is null) return new Response($"Guess cannot be blank");
+            if (guess is null) return new Response($"Guess cannot be blank");
 
-            if (guess.MyGuess.Length != 5) return new Response($"Guess must be 5 letters");
+            if (guess.Length != 5) return new Response($"Guess must be 5 letters");
 
-            guess.MyGuess = guess.MyGuess.ToLower();
+            guess = SanitizeInput(guess);
+            word = SanitizeInput(word);
 
-            if (!IsWord(guess.MyGuess)) return new Response("The guess is not a word");
+            if (!IsWord(guess)) return new Response($"{guess} is not a word");
 
             // Now that we have checked everything else, actually do the guess.
-            List<Letter> result = GetLetterResults(guess.MyGuess!.ToLower(), word.ToLower());
+            List<Letter> result = GetLetterResults(guess, word);
 
             return new Response(result);
         }
@@ -63,31 +66,88 @@ namespace WordleApp.Controllers
 
         public static List<Letter> GetLetterResults(string guess, string word)
         {
-            List<Letter> result = new();
+            var result = new Letter[5];
+            var remainingLetters = word.ToList();
 
-            int index = 0;
-            foreach (char c in guess)
+            // First check to see if there are exact matches and remove from the remainingLetters
+            for (int index = 0; index < guess.Length; index++)
             {
-                Letter letter;
-                if (word.Contains(c))
+                if (word[index] == guess[index])
                 {
-                    if (word[index] == guess[index])
+                    var letter = new Letter { Character = guess[index], State = Validness.RightLetterRightPlace };
+                    result[index] = letter;
+                    remainingLetters.Remove(guess[index]);
+                }
+            }
+
+            // Now check the rest of the letters, out of place or don't exist.
+            for (int index = 0; index < guess.Length; index++)
+            {
+                if (remainingLetters.Contains(guess[index]))
+                {
+                    var letter = new Letter { Character = guess[index], State = Validness.RightLetteWrongPlace };
+                    result[index] = letter;
+                    remainingLetters.Remove(guess[index]);
+                }
+                else if (result[index] is null)
+                {
+                    var letter = new Letter { Character = guess[index], State = Validness.WrongLetter };
+                    result[index] = letter;
+                }
+            }
+
+            return result.ToList();
+        }
+
+        // Route = /api/wordle/WordCount
+        [HttpGet("PossibleWords")]
+        public int PossibleWords(string? correctLetters, string? otherLetters)
+        {
+            if (correctLetters == null) correctLetters = "";
+            if (otherLetters == null) otherLetters = "";
+            correctLetters = SanitizeInput(correctLetters,"?. *")
+                .Replace('?', '.')
+                .Replace(' ', '.')
+                .Replace('*', '.')
+                .PadRight(5, '.');
+            otherLetters = SanitizeInput(otherLetters);
+            List<string> matches = new();
+            if (otherLetters.Length == 0)
+            {
+                return Words.Count(f => Regex.IsMatch(f, correctLetters, RegexOptions.None));
+            }
+            else
+            {
+                string currentLetters = correctLetters.Replace(".", "");
+                var query = Words.Where(f => Regex.IsMatch(f, correctLetters, RegexOptions.None));
+                foreach (var c in otherLetters)
+                {
+                    if (currentLetters.Contains(c))
                     {
-                        letter = new Letter { Character = c, State = Validness.RightLetterRightPlace };
+                        // Check for multiples of the same letter.
+                        currentLetters += c;
+                        var count = currentLetters.Split(c).Length - 1;
+                        query = query.Where(f => f.Split(c).Length - 1 == count);
                     }
                     else
                     {
-                        letter = new Letter { Character = c, State = Validness.RightLetteWrongPlace };
+                        query = query.Where(f => f.Contains(c));
+                        currentLetters += c;
                     }
                 }
-                else
-                {
-                    letter = new Letter { Character = c, State = Validness.WrongLetter };
-                }
-                result.Add(letter);
-                index++;
+                return query.Count();
             }
+        }
 
+        public static string SanitizeInput(string word, string otherValidChars = "")
+        {
+            word = word.ToLower();
+            string result = "";
+            var validLetters = ValidLetters + otherValidChars;
+            foreach (var c in word)
+            {
+                if (validLetters.Contains(c)) result += c;
+            }
             return result;
         }
     }

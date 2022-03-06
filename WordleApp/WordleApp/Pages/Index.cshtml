@@ -4,19 +4,24 @@
     ViewData["Title"] = "Home page";
 }
 
-<script src="/js/index.js"></script>
+<script src="/js/index.js" defer="defer"></script>
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    <div>
-        <input class="form-control mb-3" id="guess" type="text" />
-        <button onclick="checkWord()" id="guess-btn" class="btn btn-primary btn-lg">Guess</button>
+    <h1 class="display-4">Guess the 5 Letter Word</h1>
+    <div class="container">
+        <div class="row">
+            <div class="offset-md-3 col-sm-3">
+                <input class="form-control" id="guess" type="text" />
+            </div>
+            <div class="col-sm-3">
+                <button onclick="checkWord()" id="guess-btn" class="btn btn-primary btn-lg">Guess</button>
+            </div>
+        </div>
         <div id="message" class="">Guess a 5 letter word</div>
+        <div id="words" class="">Lots of words</div>
     </div>
 
     <div id="result">
-
     </div>
 </div>
 
