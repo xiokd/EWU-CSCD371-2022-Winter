@@ -60,6 +60,8 @@ function checkWord() {
             }
             let element = document.getElementById("message");
             element.innerText = message;
+            // Clear the last word
+            document.getElementById('guess').value = "";
         });
 }
 
