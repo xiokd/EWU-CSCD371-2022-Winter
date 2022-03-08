@@ -7,15 +7,10 @@ menu_button.addEventListener("click",()=>{
 function displayJoke(data) {
     const jokeData = data;
 
-    console.log(jokeData.type);
-
     var type = jokeData.type;
 
     if (type == 'single') {
         // joke is a one-liner
-
-        console.log(jokeData.joke);
-
         var jokeLine1Div = document.getElementById('joke-line-1');
         const heading = document.createElement("p");
         heading.innerHTML = jokeData.joke;
@@ -23,9 +18,6 @@ function displayJoke(data) {
     }
     if (type == 'twopart') {
         // joke with setup and delivery
-
-        console.log(jokeData.setup);
-
         var jokeLine1Div = document.getElementById('joke-line-1');
         const heading = document.createElement("p");
         heading.innerHTML = jokeData.setup;
@@ -52,3 +44,14 @@ function makeGetRequest() {
 }
 
 makeGetRequest();
+
+function clearJokeCard() {
+    document.getElementById('joke-line-1').innerHTML = "";
+    document.getElementById('joke-line-2').innerHTML = "";
+}
+
+let another_joke_button = document.querySelector('.another_joke');
+another_joke_button.addEventListener("click", () => {
+    clearJokeCard();
+    makeGetRequest();
+})
