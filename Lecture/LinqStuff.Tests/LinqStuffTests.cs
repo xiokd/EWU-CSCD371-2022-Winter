@@ -6,7 +6,7 @@ namespace LinqStuff.Tests;
 [TestClass]
 public class LinqStuffTests
 {
-    public MemberInfo[] GetEnumerbaleMembers()
+    static public MemberInfo[] GetEnumerbaleMembers()
     {
         MemberInfo[] members = typeof(Enumerable).GetMembers();
         Assert.AreEqual<int>(212, members.Length);
@@ -66,7 +66,7 @@ public class LinqStuffTests
         Assert.AreEqual(7, memberNames.Count());
         Assert.AreEqual<int>(7, countMemberNameIterations);
         Assert.AreEqual<int>(212, countMemberInfoIterations);
-        memberNames.Count();
+        _ = memberNames.Count();
         Assert.AreEqual<int>(14, countMemberNameIterations);
         Assert.AreEqual<int>(424, countMemberInfoIterations);
 
@@ -94,14 +94,14 @@ public class LinqStuffTests
 
         Assert.AreEqual<int>(7, countMemberNameIterations);
         Assert.AreEqual<int>(212, countMemberInfoIterations);
-        Assert.AreEqual(7, memberNames.Count());
+        Assert.AreEqual(7, memberNames.Count);
         Assert.AreEqual<int>(7, countMemberNameIterations);
         Assert.AreEqual<int>(212, countMemberInfoIterations);
-        memberNames.Count();
+        _ = memberNames.Count;
         Assert.AreEqual<int>(7, countMemberNameIterations);
         Assert.AreEqual<int>(212, countMemberInfoIterations);
 
-        int finalCount = memberNames.Count();
+        int finalCount = memberNames.Count;
         Assert.AreEqual<int>(212, countMemberInfoIterations);
     }
 }

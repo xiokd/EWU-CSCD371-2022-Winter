@@ -1,6 +1,6 @@
 ﻿namespace LambdaExpressions
 {
-    public delegate double MathOperation<TLeft>(in TLeft left, in double right, in double output);
+    public delegate double MathOperation<TLeft>(TLeft left, double right, double output);
 
     public class MathQueue
     {

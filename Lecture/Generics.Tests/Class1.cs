@@ -1,26 +1,31 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace Generics.Tests;
 public class Container<T>
    where T : notnull
 {
+    private T? _Value;
     public T Value
     {
         get
         {
-            return Value;
+            return _Value!;
         }
         set
         {
-            // Check for null
-            if (Value.Equals(value))
+            
+            if (!Value.Equals(value))
             {
-                Value = value;
+                _Value = value??throw new ArgumentNullException(nameof(value));
             }
         }
-
     }
+
+#pragma warning disable IDE0051 // Remove unused private members
+    // Potentially used to cache the count.
     private Container<T>? Root { get; set; }
+#pragma warning restore IDE0051 // Remove unused private members
 
     Container(T value)
     {
