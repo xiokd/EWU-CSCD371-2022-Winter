@@ -83,16 +83,21 @@ namespace WordleApp.Controllers
             // Now check the rest of the letters, out of place or don't exist.
             for (int index = 0; index < guess.Length; index++)
             {
-                if (remainingLetters.Contains(guess[index]))
+                // Only check letters that haven't been found.
+                if (result[index] is null)
                 {
-                    var letter = new Letter { Character = guess[index], State = Validness.RightLetteWrongPlace };
-                    result[index] = letter;
-                    remainingLetters.Remove(guess[index]);
-                }
-                else if (result[index] is null)
-                {
-                    var letter = new Letter { Character = guess[index], State = Validness.WrongLetter };
-                    result[index] = letter;
+                    // See if this letter is in the word.
+                    if (remainingLetters.Contains(guess[index]))
+                    {
+                        var letter = new Letter { Character = guess[index], State = Validness.RightLetterWrongPlace };
+                        result[index] = letter;
+                        remainingLetters.Remove(guess[index]);
+                    }
+                    else // It is just a wrong letter.
+                    {
+                        var letter = new Letter { Character = guess[index], State = Validness.WrongLetter };
+                        result[index] = letter;
+                    }
                 }
             }
 

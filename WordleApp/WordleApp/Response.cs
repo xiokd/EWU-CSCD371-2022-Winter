@@ -29,7 +29,7 @@
     public enum Validness
     {
         WrongLetter = 0,
-        RightLetteWrongPlace = 1,
+        RightLetterWrongPlace = 1,
         RightLetterRightPlace = 2
     }
 }

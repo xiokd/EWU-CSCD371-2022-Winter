@@ -6,14 +6,25 @@ namespace WordleApp.Tests
     public class WordleTests
     {
         [TestMethod]
-        public void CheckWord()
+        public void CheckWordGuess()
         {
             var result = WordleApp.Controllers.WordleController.GetLetterResults("ABEGF", "GUESS");
             Assert.AreEqual(WordleApp.Validness.WrongLetter, result[0].State);
             Assert.AreEqual(WordleApp.Validness.WrongLetter, result[1].State);
             Assert.AreEqual(WordleApp.Validness.RightLetterRightPlace, result[2].State);
-            Assert.AreEqual(WordleApp.Validness.RightLetteWrongPlace, result[3].State);
+            Assert.AreEqual(WordleApp.Validness.RightLetterWrongPlace, result[3].State);
             Assert.AreEqual(WordleApp.Validness.WrongLetter, result[4].State);
+        }
+
+        [TestMethod]
+        public void CheckWordShall()
+        {
+            var result = WordleApp.Controllers.WordleController.GetLetterResults("palls", "shall");
+            Assert.AreEqual(WordleApp.Validness.WrongLetter, result[0].State);
+            Assert.AreEqual(WordleApp.Validness.RightLetterWrongPlace, result[1].State);
+            Assert.AreEqual(WordleApp.Validness.RightLetterWrongPlace, result[2].State);
+            Assert.AreEqual(WordleApp.Validness.RightLetterRightPlace, result[3].State);
+            Assert.AreEqual(WordleApp.Validness.RightLetterWrongPlace, result[4].State);
         }
 
         [TestMethod]
