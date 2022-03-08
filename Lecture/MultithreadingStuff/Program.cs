@@ -5,16 +5,21 @@ public class Program
     {
         Console.WriteLine("Hello, World!");
 
-        Task.Run(
-            () => Display('.')
+        CancellationTokenSource cancellationTokenSource = 
+            new CancellationTokenSource();
+        Task task = Task.Run(
+            () => Display('.', cancellationTokenSource.Token)
             );
 
         Console.WriteLine("ENTER to exit");
         Console.ReadLine();
+        Console.WriteLine("Thanks for letting me done writing boring periods.... sheesh.. give me some real work.");
+        cancellationTokenSource.Cancel();
+        Console.WriteLine("Exiting!!!");
     }
-    static void Display(char character)
+    static void Display(char character, CancellationToken cancellationToken)
     {
-        while (true)
+        while (!cancellationToken.IsCancellationRequested)
         {
             Console.Write(character);
         }
