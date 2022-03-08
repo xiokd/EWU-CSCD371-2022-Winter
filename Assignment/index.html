@@ -7,6 +7,8 @@
     <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
     <link rel="manifest" href="favicon/site.webmanifest">
+
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 </head>
 
     <body class="wrapper">
@@ -34,14 +36,10 @@
                 <h2 class="jokecard_title_text">A Joke</h2>
             </div>
             <div>
-                <div class="jokecard_content">
-                    <p>
-                        First joke line
+                <div class="jokecard_content" id="joke-card">
+                    <p id="joke-line-1">
                     </p>
-                </div>
-                <div class="jokecard_content">
-                    <p>
-                        Second joke line
+                    <p id="joke-line-2">
                     </p>
                 </div>
             </div>
