@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 public class Program
 {
     static int iterationCount = 0;
@@ -8,15 +10,25 @@ public class Program
         CancellationTokenSource cancellationTokenSource = 
             new CancellationTokenSource();
 
-        Task<int> task = Task.Run(
+        Task<int> taskDisplay = Task.Run(
             () => Display('.', cancellationTokenSource.Token)                
             );
-        
+
+        static void Decrement()
+        {
+            while (true)
+            {
+                Console.Write('-');
+                iterationCount--;
+            }
+        };
+        Task taskDecrement = Task.Run(Decrement);
+
         iterationCount--;
         Console.WriteLine("ENTER to exit");
         Console.ReadLine();
         cancellationTokenSource.Cancel();
-        iterationCount = task.Result;
+        iterationCount = taskDisplay.Result;
         Console.WriteLine($"IterationCount = {iterationCount}");
         Console.WriteLine("Exiting!!!");
     }
@@ -30,6 +42,14 @@ public class Program
             iterationCount++;
         }
         return iterationCount;
+    }
+
+
+    public int StartProcess(int interations)
+    {
+        Process process = Process.Start("ping", "google.com");
+        process.WaitForExit();
+        return process.ExitCode;
     }
 }
 
