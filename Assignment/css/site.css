@@ -54,7 +54,6 @@ a.button {
 
 .list_button {
     color: white;
-    background: linear-gradient(to left, #0099ff 0%, #00cc99 100%);
     width: 275px;
     padding: 5px 5px 5px 5px;
     border-radius: 8px;
@@ -125,8 +124,14 @@ a.button {
 
 .another_joke {
     border-radius: 0px;
+    color: white;
 }
 
 .colored_button {
     background: linear-gradient(to left, #0099ff 0%, #00cc99 100%);
+}
+
+.colored_button:hover {
+    background: rgb(63,94,251);
+    background: radial-gradient(circle, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%);
 }
