@@ -1,5 +1,6 @@
 ﻿
 using System.Diagnostics;
+using System.Net;
 
 public class Program
 {
@@ -48,8 +49,19 @@ public class Program
     public int StartProcess(int interations)
     {
         Process process = Process.Start("ping", "google.com");
+        // Other code here
         process.WaitForExit();
         return process.ExitCode;
+    }
+
+
+    public void DownloadFile()
+    {
+        WebClient webClient = new WebClient();
+        Task<byte[]> task = webClient.DownloadDataTaskAsync("IntelliTect.com");
+
+        // do other stuff here.
+        task.Wait();
     }
 }
 

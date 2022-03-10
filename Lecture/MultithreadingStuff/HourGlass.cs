@@ -8,7 +8,7 @@ namespace MultithreadingStuff;
 
 public class HourGlass
 {
-    Task<int> DisplayAsnc(char character, 
+    public Task<int> DisplayAsync(char character, 
         CancellationToken cancellationToken = default)
     {
         Task<int> taskDisplay = Task.Run(
@@ -22,11 +22,13 @@ public class HourGlass
     {
         int iterationCount = 0;
         Thread.CurrentThread.Name = "DisplayThread";
-        while (!cancellationToken.IsCancellationRequested)
+        do
         {
             Console.Write(character);
             iterationCount++;
         }
+        while (!cancellationToken.IsCancellationRequested &&
+            iterationCount<20000);
         return iterationCount;
     }
 }
