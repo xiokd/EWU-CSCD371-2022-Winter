@@ -35,11 +35,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture10", "Lecture10", "{
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinqStuff.Tests", "LinqStuff.Tests\LinqStuff.Tests.csproj", "{016615D2-FBC9-4936-9B3E-5B8532D6BFE9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture17", "Lecture17", "{44C8DE90-A869-4B0D-9626-1329C1229B88}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Lecture17+18", "Lecture17+18", "{44C8DE90-A869-4B0D-9626-1329C1229B88}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultithreadingStuff", "MultithreadingStuff\MultithreadingStuff.csproj", "{681B9EE8-D885-4945-A659-595625DD9823}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadingStuff", "MultithreadingStuff\MultithreadingStuff.csproj", "{681B9EE8-D885-4945-A659-595625DD9823}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultithreadingStuff.Tests", "MultithreadingStuff.Tests\MultithreadingStuff.Tests.csproj", "{1D4FA8D7-97A4-4126-9137-AAB5D6DD4DF9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MultithreadingStuff.Tests", "MultithreadingStuff.Tests\MultithreadingStuff.Tests.csproj", "{1D4FA8D7-97A4-4126-9137-AAB5D6DD4DF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
