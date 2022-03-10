@@ -11,23 +11,34 @@ function displayJoke(data) {
 
     if (type == 'single') {
         // joke is a one-liner
-        var jokeLine1Div = document.getElementById('joke-line-1');
-        const heading = document.createElement("p");
-        heading.innerHTML = jokeData.joke;
-        jokeLine1Div.appendChild(heading);
+        displaySingleJoke(jokeData);
     }
     if (type == 'twopart') {
         // joke with setup and delivery
-        var jokeLine1Div = document.getElementById('joke-line-1');
-        const heading = document.createElement("p");
-        heading.innerHTML = jokeData.setup;
-        jokeLine1Div.appendChild(heading);
-
-        var jokeLine2Div = document.getElementById('joke-line-2');
-        const heading2 = document.createElement("p");
-        heading2.innerHTML = jokeData.delivery;
-        jokeLine2Div.appendChild(heading2);
+        displayFirstLine(jokeData);
+        setTimeout(displaySecondLine, 4000, jokeData);
     }
+}
+
+function displaySingleJoke(jokeData) {
+    var jokeLine1Div = document.getElementById('joke-line-1');
+    const heading = document.createElement("p");
+    heading.innerHTML = jokeData.joke;
+    jokeLine1Div.appendChild(heading);
+}
+
+function displayFirstLine(jokeData) {
+    var jokeLine1Div = document.getElementById('joke-line-1');
+    const heading = document.createElement("p");
+    heading.innerHTML = jokeData.setup;
+    jokeLine1Div.appendChild(heading);
+}
+
+function displaySecondLine(jokeData) {
+    var jokeLine2Div = document.getElementById('joke-line-2');
+    const heading2 = document.createElement("p");
+    heading2.innerHTML = jokeData.delivery;
+    jokeLine2Div.appendChild(heading2);
 }
 
 function makeGetRequest() {
@@ -39,6 +50,8 @@ function makeGetRequest() {
         },
         (error) => {
             console.log(error);
+            var errorMessage = document.getElementById('joke-line-1');
+            errorMessage.innerText = "Try again in a few moments";
         }
     );
 }
