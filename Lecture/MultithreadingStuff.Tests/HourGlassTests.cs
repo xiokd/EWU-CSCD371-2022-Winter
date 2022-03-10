@@ -1,6 +1,6 @@
 namespace MultithreadingStuff.Tests;
 [TestClass]
-public class UnitTest1
+public class HourGlassTests
 {
     [TestMethod]
     public void TestMethod1()
