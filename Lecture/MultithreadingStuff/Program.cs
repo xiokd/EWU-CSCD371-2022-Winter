@@ -1,4 +1,4 @@
-﻿
+﻿// This file is no longer included in the project compile.
 using System.Diagnostics;
 using System.Net;
 
