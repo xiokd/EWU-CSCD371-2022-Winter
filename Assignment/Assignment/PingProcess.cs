@@ -25,15 +25,36 @@ public class PingProcess
         return new PingResult( process.ExitCode, stringBuilder?.ToString());
     }
 
+    /* 	1. Implement PingProcess' public Task<PingResult> RunTaskAsync(string hostNameOrAddress) ❌✔ 
+		○ First implement public void RunTaskAsync_Success() test method to test PingProcess.RunTaskAsync() using "localhost". ❌✔
+        ○ Do NOT use async/await in this implementation. ❌✔
+    */
     public Task<PingResult> RunTaskAsync(string hostNameOrAddress)
     {
-        throw new NotImplementedException();
+        Task<PingResult> task = null!;
+        Task.Run(() =>
+        {
+            // TODO: logic for running ping 
+            // currently we are returning null
+            Run(hostNameOrAddress);
+        });
+        task.Wait();
+        // I think we need a Task.Wait() somewhere
+
+        return task;
     }
 
+    /*	2. Implement PingProcess' async public Task<PingResult> RunAsync(string hostNameOrAddress) ❌✔ 
+		○ First implement the public void RunAsync_UsingTaskReturn_Success() test method to test 
+            PingProcess.RunAsync() using "localhost" without using async/await. ❌✔
+        ○ Also implement the async public Task RunAsync_UsingTpl_Success() test method to test 
+            PingProcess.RunAsync() using "localhost" but this time DO using async/await. ❌✔
+    */
     async public Task<PingResult> RunAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
-        Task task = null!;
+        Task<PingResult> task = null!;
+        //await RunTaskAsync(hostNameOrAddress);
         await task;
         throw new NotImplementedException();
     }
