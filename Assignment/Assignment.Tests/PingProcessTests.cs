@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Assignment.Tests;
@@ -76,7 +77,7 @@ public class PingProcessTests
     async public Task RunAsync_UsingTpl_Success()
     {
         // DO use async/await in this test.
-        PingResult result = default;
+        PingResult result = await Sut.RunAsync("localhost");
 
         // Test Sut.RunAsync("localhost");
         AssertValidPingOutput(result);
@@ -88,7 +89,13 @@ public class PingProcessTests
     [ExpectedException(typeof(AggregateException))]
     public void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrapping()
     {
-        
+        CancellationTokenSource cancellationTokenSource = new();
+        CancellationToken cancellationToken = cancellationTokenSource.Token;
+        cancellationTokenSource.Cancel();
+
+        Task<PingResult> task = Sut.RunAsync("localhost", cancellationToken);
+
+        PingResult result = task.Result;
     }
 
     [TestMethod]
@@ -96,6 +103,30 @@ public class PingProcessTests
     public void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrappingTaskCanceledException()
     {
         // Use exception.Flatten()
+        try
+        {
+            CancellationTokenSource cancellationTokenSource = new();
+            CancellationToken cancellationToken = cancellationTokenSource.Token;
+            cancellationTokenSource.Cancel();
+
+            Task<PingResult> task = Sut.RunAsync("localhost", cancellationToken);
+
+            PingResult result = task.Result;
+        }
+        catch (AggregateException aggregateException)
+        {
+            foreach(var exception in aggregateException.Flatten().InnerExceptions)
+            {
+                if(exception is TaskCanceledException)
+                {
+                    throw exception;
+                }
+                else
+                {
+                    throw;
+                }
+            }
+        }
     }
 
     [TestMethod]

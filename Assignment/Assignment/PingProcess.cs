@@ -31,15 +31,19 @@ public class PingProcess
     */
     public Task<PingResult> RunTaskAsync(string hostNameOrAddress)
     {
-        Task<PingResult> task = null!;
-        Task.Run(() =>
-        {
-            // TODO: logic for running ping 
-            // currently we are returning null
-            Run(hostNameOrAddress);
-        });
-        task.Wait();
-        // I think we need a Task.Wait() somewhere
+        //task<pingresult> task = null!;
+        //task.run(() =>
+        //{
+        //    // todo: logic for running ping 
+        //    // currently we are returning null
+        //    run(hostnameoraddress);
+        //});
+        //task.wait();
+        //// i think we need a task.wait() somewhere
+
+        Task<PingResult> task = Task.Run(
+            () => Run(hostNameOrAddress)
+            );
 
         return task;
     }
@@ -53,10 +57,14 @@ public class PingProcess
     async public Task<PingResult> RunAsync(
         string hostNameOrAddress, CancellationToken cancellationToken = default)
     {
-        Task<PingResult> task = null!;
+        cancellationToken.ThrowIfCancellationRequested();
+        Task<PingResult> task = Task.Run(
+            () => Run(hostNameOrAddress), cancellationToken
+            );
         //await RunTaskAsync(hostNameOrAddress);
         await task;
-        throw new NotImplementedException();
+
+        return task.Result;
     }
 
     async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
