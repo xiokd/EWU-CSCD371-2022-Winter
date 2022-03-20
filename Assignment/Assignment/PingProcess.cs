@@ -31,16 +31,6 @@ public class PingProcess
     */
     public Task<PingResult> RunTaskAsync(string hostNameOrAddress)
     {
-        //task<pingresult> task = null!;
-        //task.run(() =>
-        //{
-        //    // todo: logic for running ping 
-        //    // currently we are returning null
-        //    run(hostnameoraddress);
-        //});
-        //task.wait();
-        //// i think we need a task.wait() somewhere
-
         Task<PingResult> task = Task.Run(
             () => Run(hostNameOrAddress)
             );
@@ -79,14 +69,26 @@ public class PingProcess
     async public Task<PingResult> RunAsync(params string[] hostNameOrAddresses)
     {
         StringBuilder? stringBuilder = null;
-        ParallelQuery<Task<int>>? all = hostNameOrAddresses.AsParallel().Select(async item =>
-        {
-            Task<PingResult> task = null!;
-            // ...
+        CancellationToken cancellationToken = default;
 
-            await task.WaitAsync(default(CancellationToken));
-            return task.Result.ExitCode;
-        });
+        void updateStdOutput(string? line) =>
+            (stringBuilder ??= new StringBuilder()).AppendLine(line);
+
+        ParallelQuery<Task<int>>? all = hostNameOrAddresses.AsParallel()
+            .Select(async item =>
+            {
+                StartInfo.Arguments = item;
+
+                Task<PingResult> task = Task.Run(() =>
+                {
+                    Process process = RunProcessInternal(StartInfo, updateStdOutput, default, cancellationToken);
+                    cancellationToken.ThrowIfCancellationRequested();
+                    return new PingResult(process.ExitCode, stringBuilder?.ToString());
+                }, cancellationToken);
+                
+                await task.WaitAsync(default(CancellationToken));
+                return task.Result.ExitCode;
+            });
 
         await Task.WhenAll(all);
         int total = all.Aggregate(0, (total, item) => total + item.Result);

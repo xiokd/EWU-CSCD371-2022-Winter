@@ -73,21 +73,18 @@ public class PingProcessTests
     }
 
     [TestMethod]
-#pragma warning disable CS1998 // Remove this
     async public Task RunAsync_UsingTpl_Success()
     {
-        // DO use async/await in this test.
-        PingResult result = await Sut.RunAsync("localhost");
+        PingResult result = default;
+        Task<PingResult> task = Sut.RunAsync("localhost");
+        result = await task;
 
-        // Test Sut.RunAsync("localhost");
         AssertValidPingOutput(result);
     }
-#pragma warning restore CS1998 // Remove this
-
 
     [TestMethod]
     [ExpectedException(typeof(AggregateException))]
-    public void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrapping()
+    public async void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrapping()
     {
         CancellationTokenSource cancellationTokenSource = new();
         CancellationToken cancellationToken = cancellationTokenSource.Token;
@@ -95,7 +92,7 @@ public class PingProcessTests
 
         Task<PingResult> task = Sut.RunAsync("localhost", cancellationToken);
 
-        PingResult result = task.Result;
+        _ = await task;
     }
 
     [TestMethod]
@@ -123,7 +120,7 @@ public class PingProcessTests
                 }
                 else
                 {
-                    throw;
+                    throw aggregateException.InnerException!;
                 }
             }
         }
