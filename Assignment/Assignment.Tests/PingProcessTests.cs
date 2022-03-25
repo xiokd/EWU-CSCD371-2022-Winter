@@ -58,7 +58,6 @@ public class PingProcessTests
     [TestMethod]
     public void RunTaskAsync_Success()
     {
-        // Do NOT use async/await in this test.
         Task<PingResult> task = Sut.RunTaskAsync("localhost");
         AssertValidPingOutput(task.Result);
     }
@@ -66,8 +65,6 @@ public class PingProcessTests
     [TestMethod]
     public void RunAsync_UsingTaskReturn_Success()
     {
-        // Do NOT use async/await in this test.
-        // PingResult result = default;
         Task<PingResult> task = Sut.RunAsync("localhost");
         AssertValidPingOutput(task.Result);
     }
@@ -99,7 +96,6 @@ public class PingProcessTests
     [ExpectedException(typeof(TaskCanceledException))]
     public void RunAsync_UsingTplWithCancellation_CatchAggregateExceptionWrappingTaskCanceledException()
     {
-        // Use exception.Flatten()
         try
         {
             CancellationTokenSource cancellationTokenSource = new();
@@ -129,8 +125,6 @@ public class PingProcessTests
     [TestMethod]
     async public Task RunAsync_MultipleHostAddresses_True()
     {
-        // Pseudo Code - don't trust it!!!
-
         string[] hostNames = new string[] { "localhost", "localhost", "localhost", "localhost" };
         int expectedLineCount = PingOutputLikeExpression.Split(Environment.NewLine).Length * hostNames.Length;
         PingResult result = await Sut.RunAsync(hostNames);
